@@ -1,0 +1,123 @@
+#Name: Mohammed Omer Mohiuddin
+#Student Number: 101256232
+
+#Importing Random and Time Library
+import random
+from time import time
+
+#Sorting the list using BogoSort
+def bogosort(list):
+    #Getting the Length of the List
+    length = len(list)
+    #Using a while loop to shuffle the list until list is organized
+    while (list_sorted(list) == False):
+        #Calling the Function
+        list = randomize_bogo(list)
+
+    return list
+
+
+#Creating a function to check if the list is organized
+def list_sorted(list):
+    #Getting the Length of the List
+    length = len(list)
+    #Using a for loop in order to iterate through list
+    for i in range(0, length - 1):
+        #If the first number is greater then the second number then
+        if(list[i] > list[i + 1]):
+            #Returning False
+            return False
+    #Else Returnin True
+    return True
+
+
+#Creating a function to randomly try and sort list
+def randomize_bogo(list):
+    #Getting the Length of the List
+    length = len(list)
+    #Using a for loop to iterate through the entire list
+    for i in range(0, length):
+        #Getting a random number within the range of the length of the list
+        r = random.randint(0, length - 1)
+        #randomly placing different elements of the list in differen indexes
+        list[i], list[r] = list[r], list[i]
+    return list
+
+
+def bozosort(list):
+    #Getting the Length of the List
+    length = len(list)
+    #Using a while loop to shuffle the list until list is organized
+    while (list_sorted(list) == False):
+        #Calling the FUnction
+        list = randomize_bozo(list)
+
+    return(list)
+
+
+def randomize_bozo(list):
+    #Getting the length of the list
+    length = len(list)
+
+    #Creating two random indexes
+    r = random.randint(0, length - 1)
+    r1 = random.randint(0, length - 1)
+
+    #Randomly Replacing two different indexes from the list
+    list[r], list[r1] = list[r1], list[r]
+
+    return list
+#Creating the Main Function
+def main():
+
+    #Creating the size of the lists
+	problemsize = 10
+
+    #Setting the number of trials
+	numberoftrials = 30
+
+    #Creating empty variables for the time taken by each sorting method
+	timingBogo = 0
+	timingBozo = 0
+
+    #Creating a for loop which iterates the amount of number of trials we need
+	for i in range(numberoftrials):
+
+        #Creating a random list with the amount of items in it(which was predefined)
+		originalrandlist = [random.randint(0, 10) for i in range(problemsize) ]
+		randlistforbogoSort = originalrandlist[:]
+		randlistforbozoSort = originalrandlist[:]
+
+        #Starting the  Timer
+		starttime = time()
+        #Calling the BozoSort Function
+		randlistformergesort = bozosort(randlistforbozoSort)
+        #Stoping the Timer
+		stoptime = time()
+
+        #Calculating the Time Taken by BozoSort
+		timingBozo += stoptime-starttime
+
+        #Starting the timer
+		starttime = time()
+        #Calling the BogoSort Function
+		randlistforbubblesort = bogosort(randlistforbogoSort)
+        #Stopping the Timer
+		stoptime = time()
+
+        #Calculating the time taken by bogosort
+		timingBogo += stoptime-starttime
+
+        #Printing the Tester Code we are on
+		print("...", i, sep="")
+
+    #Calculating the average time taken by each sorting method
+	timingBogo /= numberoftrials
+	timingBozo /= numberoftrials
+
+    #Printing the average time taken by each sorting method
+	print("Bozo sort took: ", timingBozo )
+	print("Bogo sort took: ", timingBogo )
+
+#Calling the main Function
+main()
